@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:replace="~{base::layout(~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<!-- Start Navbar with Search -->
+	<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#"><i class="fa-solid fa-cart-shopping"></i> ShopEase</a>
+			<form class="d-flex navbar-search" action="/products" method="get">
+				<input class="form-control me-2" type="search" name="ch" placeholder="Search for products, brands and more..." aria-label="Search">
+				<button class="btn" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+			</form>
+		</div>
+	</nav>
+	<!-- End Navbar -->
+	<section>
+		<!-- Hero Section -->
+		<div class="container hero-section mt-4 mb-5">
+			<div class="row align-items-center">
+				<div class="col-md-6 text-center text-md-start">
+					<h1 class="hero-title">India's Best Online Shopping Destination</h1>
+					<p class="hero-desc">Get the best deals on mobiles, fashion, electronics, and more. Fast delivery, easy returns, and secure payments!</p>
+					<a href="/products" class="hero-btn">Shop Now</a>
+				</div>
+				<div class="col-md-6 text-center">
+					<img src="img/ecom.png" alt="ShopEase">
+				</div>
+			</div>
+		</div>
+		<!-- End Hero Section -->
+
+		<!-- Category Row -->
+		<div class="container category-row">
+			<p class="text-center fs-4">Shop by Category</p>
+			<div class="row justify-content-center">
+				<div class="col-6 col-md-2" th:each="c:${category}">
+					<div class="category-card">
+						<img th:src="@{'img/category_img/'+${c.imageName}}">
+						<a th:href="@{'/products?category='+${c.name}}">[[${c.name}]]</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Category Row -->
+
+		<!-- Latest Products Carousel -->
+		<div class="container-fluid mb-5">
+			<p class="text-center fs-4 mb-4">Latest Products</p>
+			<div class="product-carousel">
+				<div class="product-card" th:each="p:${products}">
+					<th:block th:if="${p.discount > 0}">
+						<div class="product-badge">[[${p.discount}]]% OFF</div>
+					</th:block>
+					<img alt="" th:src="@{'img/product_img/'+${p.image}}">
+					<p class="product-title"><a th:href="@{'/product/'+${p.id}}">[[${p.title}]]</a></p>
+					<p>
+						<span class="product-price"><th:block th:utext="${@commnServiceImpl.rupeeSign()}"></th:block> [[${p.discountPrice}]]</span>
+						<span class="product-old-price"><th:block th:utext="${@commnServiceImpl.rupeeSign()}"></th:block> [[${p.price}]]</span>
+						<span class="product-discount" th:if="${p.discount > 0}">[[${p.discount}]]% off</span>
+					</p>
+					<a th:href="@{'/product/'+${p.id}}" class="add-cart-btn">View Details</a>
+				</div>
+			</div>
+		</div>
+		<!-- End Latest Products Carousel -->
+	</section>
+	<footer class="footer text-center text-white">
+		<p>ecom.com &copy; 2024</p>
+	</footer>
+</body>
+</html>
