@@ -639,25 +639,6 @@ spec:
 
 ## 🤝 Contributing
 
-### Development Workflow
-
-```mermaid
-gitgraph
-    commit id: "Initial commit"
-    branch develop
-    checkout develop
-    commit id: "Feature A"
-    branch feature/user-auth
-    checkout feature/user-auth
-    commit id: "Add authentication"
-    commit id: "Add tests"
-    checkout develop
-    merge feature/user-auth
-    commit id: "Integration tests"
-    checkout main
-    merge develop
-    commit id: "Release v1.0"
-```
 
 ### Contribution Guidelines
 
