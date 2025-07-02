@@ -14,6 +14,21 @@
 
 </div>
 
+## 📸 Project Screenshots
+
+<div align="center">
+
+### Home Page
+![Screenshot 1](Screenshot1.png)
+
+### Product Catalog
+![Screenshot 2](Screenshot2.png)
+
+### Admin Dashboard
+![Screenshot 3](Screenshot3.png)
+
+</div>
+
 ---
 
 ## 📋 Table of Contents
